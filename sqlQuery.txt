@@ -1,0 +1,16 @@
+1. Employee Name and its Manager Name
+
+select Emp.Name as 'Employee Name',Mng.Name as 'Manager Name' from Employee Mng,Employee Emp where Mng.Id=Emp.Manager_Id
+
+2. Manager Name and Total Number of Employee under the Manager
+
+select  e.Name as 'Manager Name', Count(*) as 'Total Number of Employee'  from Employee E,Employee M where E.Id=M.Manager_Id group by M.Manager_Id,e.Name
+
+3. Manager Name and Manager Salary
+
+select  distinct(E.Name) as 'Manager Name' ,E.Employee_Salary as 'Manager Salary' from  Employee E,Employee M where E.Id=M.Manager_Id order by e.Employee_Salary desc
+
+
+4. Second Highest Salary of Employee and Its Manager Name
+
+SELECT name as 'Manager Name', Employee_Salary from (select name,Employee_Salary,DENSE_RANK() over (order by Employee_Salary desc)r from Employee) tbl where r=2
